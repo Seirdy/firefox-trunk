@@ -46,8 +46,10 @@ tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 ## Install Instructions
 
 %install
-install -dm 755 %{buildroot}/{usr/{bin,share/applications},opt}
+install -dm 755 %{buildroot}/{usr/{bin,share/{applications,icons}},opt}
 install -dm 755 %{buildroot}/%{_optdir}/firefox-%{version}/browser/defaults/preferences/
+
+install -m644 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/%{name}.png
 cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-%{version}/
 ln -s /opt/firefox-%{version}/firefox %{buildroot}/usr/bin/firefox-trunk
 
@@ -80,4 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
+%{_datadir}/icons/%{name}.png
 %{_optdir}/firefox-%{version}/
