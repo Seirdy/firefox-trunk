@@ -46,12 +46,12 @@ tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 ## Install Instructions
 
 %install
-install -dm 755 %{buildroot}/{usr/{bin,share/{applications,}{icons/hicolor/128x128/apps}},opt}
-install -dm 755 %{buildroot}/%{_optdir}/firefox-%{version}/browser/defaults/preferences/
 
-install -m644 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/%{name}.png
-cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-%{version}/
-ln -s /opt/firefox-%{version}/firefox %{buildroot}/usr/bin/firefox-trunk
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/128x128/apps},opt}
+install -dm 755 %{buildroot}/%{_optdir}/firefox-trunk/browser/defaults/preferences/
+install -m 755 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
+cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-trunk/
+ln -s /opt/firefox-trunk/firefox %{buildroot}/usr/bin/firefox-trunk
 
 cat > %{buildroot}/%{_datadir}/applications/%{name}.desktop << EOF
 
@@ -82,5 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
-%{_datadir}/icons/%{name}.png
-%{_optdir}/firefox-%{version}/
+%{_datadir}/icons//hicolor/128x128/apps/%{name}.png
+%{_optdir}/firefox-trunk/
