@@ -4,7 +4,7 @@ AutoReqProv: no
 
 %global currenf 44.0a1
 %global _optdir /opt
-%global packver 0.2
+%global packver 0.3
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -71,6 +71,9 @@ StartupNotify=true
 Categories=Network;WebBrowser;
 Keywords=web;browser;internet;
 EOF
+## Disable Update Alert
+echo '// Disable Update Alert
+pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-%{version}/browser/defaults/preferences/vendor.js
 
 ##Cleanup
 
