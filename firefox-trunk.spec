@@ -49,7 +49,8 @@ tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 
 install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/128x128/apps},opt}
 install -dm 755 %{buildroot}/%{_optdir}/firefox-trunk/browser/defaults/preferences/
-install -m 755 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
+
+install -m644 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
 cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-trunk/
 ln -s /opt/firefox-trunk/firefox %{buildroot}/usr/bin/firefox-trunk
 
@@ -73,7 +74,7 @@ Keywords=web;browser;internet;
 EOF
 ## Disable Update Alert
 echo '// Disable Update Alert
-pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-%{version}/browser/defaults/preferences/vendor.js
+pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-trunk/browser/defaults/preferences/vendor.js
 
 ##Cleanup
 
