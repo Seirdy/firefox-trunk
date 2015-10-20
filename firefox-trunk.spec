@@ -33,7 +33,7 @@ Requires: sqlite >= 3.8.10.2
 ##Description for Package
 
 %description
-Nightly Firefox builds from nightly.mozilla.org
+This package is a package built directly from Mozilla's nightly tar. This package will be updated weekly if not sooner
 
 %prep
 
@@ -41,16 +41,18 @@ Nightly Firefox builds from nightly.mozilla.org
 
 %build
 wget -c --no-check-certificate -P %{_builddir} https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
+wget -c --no-check-certificate -P %{_builddir} http://i.imgur.com/bK15O3i.png
 tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 
 ## Install Instructions
 
 %install
 
-install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/128x128/apps},opt}
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/48x48/apps},opt}
 install -dm 755 %{buildroot}/%{_optdir}/firefox-trunk/browser/defaults/preferences/
 
-install -m644 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
+install -m644 %{_builddir}/bK15O3i.png %{buildroot}/usr/share/icons/hicolor/48x48/apps/firefox-trunk.png
+
 cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-trunk/
 ln -s /opt/firefox-trunk/firefox %{buildroot}/usr/bin/firefox-trunk
 
@@ -86,5 +88,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
-%{_datadir}/icons//hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons//hicolor/48x48/apps/%{name}.png
 %{_optdir}/firefox-trunk/
