@@ -2,9 +2,9 @@ AutoReqProv: no
 
 ##Init variables
 
-%global currenf 44.0a1
+%global currenf 45.0a1
 %global _optdir /opt
-%global packver 0.6
+%global packver 0.7
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -40,7 +40,7 @@ This package is a package built directly from Mozilla's nightly tar. This packag
 ##Build Instructions
 
 %build
-wget -c --no-check-certificate -P %{_builddir} https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
+wget -c --no-check-certificate -P %{_builddir} https://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox--%{currenf}.en-US.linux-%{arch}.tar.bz2
 wget -c --no-check-certificate -P %{_builddir} http://i.imgur.com/bK15O3i.png
 tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 
