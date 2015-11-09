@@ -4,7 +4,7 @@ AutoReqProv: no
 
 %global currenf 45.0a1
 %global _optdir /opt
-%global packver 0.7
+%global packver 0.2
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -61,7 +61,7 @@ cat > %{buildroot}/%{_datadir}/applications/%{name}.desktop << EOF
 ## Desktop File
 
 [Desktop Entry]
-Version=1.0
+Version=45.0a1
 Name=Firefox Nightly
 GenericName=Web Browser
 Comment=Browse the Web
