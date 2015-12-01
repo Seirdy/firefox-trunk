@@ -4,7 +4,7 @@ AutoReqProv: no
 
 %global currenf 45.0a1
 %global _optdir /opt
-%global packver 0.7_01
+%global packver 0.8
 %ifarch x86_64
 %global arch x86_64
 %else
