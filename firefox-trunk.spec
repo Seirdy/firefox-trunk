@@ -40,7 +40,7 @@ This package is a package built directly from Mozilla's nightly tar. This packag
 ##Build Instructions
 
 %build
-wget -c --no-check-certificate -P %{_builddir} https://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
+wget -c --no-check-certificate -P %{_builddir} https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
 wget -c --no-check-certificate -P %{_builddir} http://i.imgur.com/bK15O3i.png
 tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 
