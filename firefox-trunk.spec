@@ -33,7 +33,7 @@ Requires: sqlite >= 3.8.10.2
 ##Description for Package
 
 %description
-This package is a package built directly from Mozilla's nightly tar. This package will be updated weekly if not sooner
+This package is a package built directly from Mozilla's nightly tarball. This package will be updated weekly if not sooner
 
 %prep
 
