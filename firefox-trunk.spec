@@ -2,9 +2,9 @@ AutoReqProv: no
 
 ##Init variables
 
-%global currenf 45.0a1
+%global currenf 46.0a1
 %global _optdir /opt
-%global packver 0.10
+%global packver 0.1
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -15,7 +15,7 @@ AutoReqProv: no
 
 Summary: Firefox Nightly RPM Builds
 Name: firefox-trunk
-Version: 45
+Version: 46
 Release: 0a1_%{packver}%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
