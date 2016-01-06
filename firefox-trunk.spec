@@ -29,7 +29,7 @@ Requires: alsa-lib libX11 libXcomposite libXdamage libnotify libXt libXext glib2
 Requires: nspr >= 4.10.8
 Requires: nss >= 3.19.2
 Requires: sqlite >= 3.8.10.2
-Conflicts: firefox-46 = 46
+Conflicts: firefox-46 >= 46-0a1_0.1
 
 ##Description for Package
 
