@@ -2,9 +2,9 @@ AutoReqProv: no
 
 ##Init variables
 
-%global currenf 46.0a1
+%global currenf 47.0a1
 %global _optdir /opt
-%global packver 0.7
+%global packver 0.8
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -15,7 +15,7 @@ AutoReqProv: no
 
 Summary: Firefox Nightly RPM Builds
 Name: firefox-trunk
-Version: 46
+Version: 47
 Release: 0a1_%{packver}%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
@@ -29,7 +29,6 @@ Requires: alsa-lib libX11 libXcomposite libXdamage libnotify libXt libXext glib2
 Requires: nspr >= 4.10.8
 Requires: nss >= 3.19.2
 Requires: sqlite >= 3.8.10.2
-Conflicts: firefox-46 >= 46-0a1_0.1
 
 ##Description for Package
 
@@ -61,7 +60,7 @@ cat > %{buildroot}/%{_datadir}/applications/%{name}.desktop << EOF
 ## Desktop File
 
 [Desktop Entry]
-Version=46.0a1
+Version=47.0a1
 Name=Nightly
 GenericName=Firefox Nightly
 Comment=Browse the Web
