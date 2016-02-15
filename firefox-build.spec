@@ -4,7 +4,6 @@ AutoReqProv: no
 
 %global currenf 47.0a1
 %global _optdir /opt
-%global packver %a.%b.%d.%Y
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -16,7 +15,7 @@ AutoReqProv: no
 Summary: Firefox Nightly RPM Builds
 Name: firefox-trunk
 Version: 47
-Release: 0a1_%{packver}%{?dist}
+Release: 0a1_%(date +%%y%%m%%d)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
 URL: http://www.nightly.mozilla.org/
