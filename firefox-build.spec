@@ -4,7 +4,7 @@ AutoReqProv: no
 
 %global currenf 47.0a1
 %global _optdir /opt
-%global packver 0.8
+%global packver %a.%b.%d.%Y
 %ifarch x86_64
 %global arch x86_64
 %else
@@ -86,5 +86,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
-%{_datadir}/icons//hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 %{_optdir}/firefox-trunk/
