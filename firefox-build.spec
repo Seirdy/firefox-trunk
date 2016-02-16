@@ -3,6 +3,7 @@ AutoReqProv: no
 ##Init variables
 
 %global currenf 47.0a1
+%global packver 47
 %global _optdir /opt
 %ifarch x86_64
 %global arch x86_64
@@ -14,7 +15,7 @@ AutoReqProv: no
 
 Summary: Firefox Nightly RPM Builds
 Name: firefox-trunk
-Version: 51
+Version: %{packver}
 Release: 0a1_%(date +%%y%%m%%d)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
@@ -59,7 +60,7 @@ cat > %{buildroot}/%{_datadir}/applications/%{name}.desktop << EOF
 ## Desktop File
 
 [Desktop Entry]
-Version=47.0a1
+Version=%{currenf}
 Name=Nightly
 GenericName=Firefox Nightly
 Comment=Browse the Web
