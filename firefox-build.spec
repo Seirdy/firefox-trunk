@@ -14,7 +14,7 @@ AutoReqProv: no
 
 Summary: Firefox Nightly RPM Builds
 Name: firefox-trunk
-Version: 50
+Version: 51
 Release: 0a1_%(date +%%y%%m%%d)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
