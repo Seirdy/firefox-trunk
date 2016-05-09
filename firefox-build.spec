@@ -83,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 ##Installed Files
 
+
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
