@@ -2,8 +2,8 @@ AutoReqProv: no
 
 ##Init variables
 
-%global currenf 51.0a1
-%global packver 51
+%global currenf 64.0a1
+%global packver 64
 %global _optdir /opt
 %ifarch x86_64
 %global arch x86_64
@@ -48,9 +48,17 @@ tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
 %install
 
 install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/128x128/apps},opt}
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/64x64/apps},opt}
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/48x48/apps},opt}
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/32x32/apps},opt}
+install -dm 755 %{buildroot}/usr/{bin,share/{applications,icons/hicolor/16x16/apps},opt}
 install -dm 755 %{buildroot}/%{_optdir}/firefox-trunk/browser/defaults/preferences/
 
-install -m644 %{_builddir}/firefox/browser/icons/mozicon128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
+install -m 644 %{_builddir}/firefox/browser/chrome/icons/default/default128.png %{buildroot}/usr/share/icons/hicolor/128x128/apps/firefox-trunk.png
+install -m 644 %{_builddir}/firefox/browser/chrome/icons/default/default64.png %{buildroot}/usr/share/icons/hicolor/64x64/apps/firefox-trunk.png
+install -m 644 %{_builddir}/firefox/browser/chrome/icons/default/default48.png %{buildroot}/usr/share/icons/hicolor/48x48/apps/firefox-trunk.png
+install -m 644 %{_builddir}/firefox/browser/chrome/icons/default/default32.png %{buildroot}/usr/share/icons/hicolor/32x32/apps/firefox-trunk.png
+install -m 644 %{_builddir}/firefox/browser/chrome/icons/default/default16.png %{buildroot}/usr/share/icons/hicolor/16x16/apps/firefox-trunk.png
 
 cp -rf %{_builddir}/firefox/* %{buildroot}/opt/firefox-trunk/
 ln -s /opt/firefox-trunk/firefox %{buildroot}/usr/bin/firefox-trunk
@@ -72,6 +80,26 @@ MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xm
 Categories=Network;WebBrowser;
 Keywords=web;browser;internet;
 EOF
+
+cat > %{buildroot}/%{_datadir}/applications/%{name}-safemode.desktop << EOF
+
+## Safe Mode Desktop File
+
+[Desktop Entry]
+Version=%{currenf}
+Name=Nightly - Safe Mode
+GenericName=Firefox Nightly - Safe Mode
+Comment=Browse the Web in safe mode
+Exec=firefox-trunk  -safe-mode %u
+Icon=firefox-trunk.png
+Terminal=false
+Type=Application
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+Categories=Network;WebBrowser;
+Keywords=web;browser;internet;
+EOF
+
+
 ## Disable Update Alert
 echo '// Disable Update Alert
 pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-trunk/browser/defaults/preferences/vendor.js
@@ -88,4 +116,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
 %{_optdir}/firefox-trunk/
+
+##Changes
+
+
+%changelog
+* Wed Oct 31 2018 Jack Greiner <jack@emoss.org> 64.0a1_181031
+- Fixed icon paths
+- Cleaned up some unnecessary commands in build
+- Re-added a safemode desktop extension
+- Updated for Release 64.0a1
