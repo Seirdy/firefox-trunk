@@ -22,6 +22,9 @@ Group: Applications/Internet
 URL: http://www.nightly.mozilla.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%undefine _disable_source_fetch
+Source0: https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
+
 ##DEPS
 BuildRequires: wget tar
 
@@ -36,12 +39,7 @@ Requires: sqlite >= 3.8.10.2
 This package is a package built directly from Mozilla's nightly tarball. This package will be updated weekly if not sooner.
 
 %prep
-
-##Build Instructions
-
-%build
-wget -c --no-check-certificate -P %{_builddir} https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
-tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
+%setup -q
 
 ## Install Instructions
 
