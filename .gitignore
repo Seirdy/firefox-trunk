@@ -1,3 +1,7 @@
 /*.log
 /*.checksums
 /*.tar.bz2
+/firefox/*
+/x86_64/*
+/*.src.rpm
+/*.rpm
