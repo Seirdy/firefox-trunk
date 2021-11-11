@@ -2,48 +2,52 @@ AutoReqProv: no
 
 ##Init variables
 
-%global currenf 79.0a1
-%global packver 79
+%global currenf 96
 %global _optdir /opt
-%ifarch x86_64
 %global arch x86_64
-%else
-%global arch i686
-%endif
+
 
 ##Package Version and Licences
 
-Summary: Firefox Nightly RPM Builds
+Summary: "This package is built directly from Mozilla's nightly tarball."
 Name: firefox-trunk
-Version: %{packver}
+Version: %{currenf}
 Release: 0a1_%(date +%%y%%m%%d)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
-URL: http://www.nightly.mozilla.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+URL: https://www.nightly.mozilla.org/
 
-Source0: https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
+ExclusiveArch: %{arch}
+
+Source0: https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.0a1.en-US.linux-%{arch}.tar.bz2
+Source1: https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.0a1.en-US.linux-%{arch}.checksums
 
 ##DEPS
 BuildRequires: wget tar
 
-Requires: alsa-lib libX11 libXcomposite libXdamage libnotify libXt libXext glib2 dbus-glib libjpeg-turbo cairo-gobject libffi fontconfig freetype libgcc gtk3 gtk2 hunspell zlib
-Requires: nspr >= 4.10.8
-Requires: nss >= 3.19.2
-Requires: sqlite >= 3.8.10.2
+Requires: alsa-lib libX11 libXcomposite libXcursor libXdamage libXext libXfixes libXi libXrandr libXrender atk cairo-gobject cairo dbus dbus-glib fdk-aac libffi fontconfig freetype libgcc gtk3 gdk-pixbuf2 glib harfbuzz pango libxcb zlib p11-kit-trust pciutils-libs
+Requires: nspr >= 4.26
+Requires: nss >= 3.70
 
 ##Description for Package
 
 %description
-This package is a package built directly from Mozilla's nightly tarball. This package will be updated weekly if not sooner.
+"This package is a package built directly from Mozilla's nightly tarball."
 
 %prep
 
-##Build Instructions
+wget -O firefox-%{currenf}.0a1.en-US.linux-%{arch}.tar.bz2 -P %{_builddir} https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.0a1.en-US.linux-%{arch}.tar.bz2
+wget -O firefox-%{currenf}.0a1.en-US.linux-%{arch}.checksums -P %{_builddir} https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.0a1.en-US.linux-%{arch}.checksums
+
+if grep -q -w $(sha512sum %{_builddir}/firefox-%{currenf}.0a1.en-US.linux-%{arch}.tar.bz2) %{_builddir}/firefox-%{currenf}.0a1.en-US.linux-%{arch}.checksums; then
+    exit 0
+else
+    echo "Checksum verification error."
+    exit -1
+fi
 
 %build
-wget -c --no-check-certificate -P %{_builddir} https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-%{currenf}.en-US.linux-%{arch}.tar.bz2
-tar -jxvf firefox-%{currenf}.en-US.linux-*.tar.bz2  -C %{_builddir}
+tar -jxvf firefox-%{currenf}.0a1.en-US.linux-%{arch}.tar.bz2 -C %{_builddir}
 
 ## Install Instructions
 
@@ -70,7 +74,7 @@ cat > %{buildroot}/%{_datadir}/applications/%{name}.desktop << EOF
 ## Desktop File
 
 [Desktop Entry]
-Version=%{currenf}
+Version=%{currenf}.0a1
 Name=Nightly
 GenericName=Firefox Nightly
 Comment=Browse the Web
@@ -88,11 +92,11 @@ cat > %{buildroot}/%{_datadir}/applications/%{name}-safemode.desktop << EOF
 ## Safe Mode Desktop File
 
 [Desktop Entry]
-Version=%{currenf}
+Version=%{currenf}.0a1
 Name=Nightly - Safe Mode
 GenericName=Firefox Nightly - Safe Mode
 Comment=Browse the Web in safe mode
-Exec=firefox-trunk  -safe-mode %u
+Exec=firefox-trunk -safe-mode %u
 Icon=firefox-trunk.png
 Terminal=false
 Type=Application
@@ -106,14 +110,7 @@ EOF
 echo '// Disable Update Alert
 pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-trunk/browser/defaults/preferences/vendor.js
 
-##Cleanup
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 ##Installed Files
-
-
 %files
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}*.desktop
@@ -126,8 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 
 ##Changes
 
-
 %changelog
+* Wed Nov 10 2021 Jack Greiner <jack@emoss.org> 96.0a1_211110
+- Updated dependencies
+- Added checksum verification for downloads
+- Simplidied spec a bit.
 * Wed Oct 31 2018 Jack Greiner <jack@emoss.org> 64.0a1_181031
 - Fixed icon paths
 - Cleaned up some unnecessary commands in build
