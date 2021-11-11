@@ -10,10 +10,14 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "Update 'nightly' tag"
+      - name: Checkout Naev Repository
+        uses: actions/checkout@v2
+
+      - name: "Update 'nightly' release"
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "nightly"
-          prerelease: true
           title: "Nightly build"
+          files: |
+            *.spec
