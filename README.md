@@ -8,4 +8,4 @@
 #### To install Nightly Packages
 
 * Fedora 22 - Rawhide
-	* `sudo dnf -y copr enable jackgreiner/firefox-trunk && dnf install firefox-trunk`
+	* `sudo dnf -y copr enable jackgreiner/firefox-trunk && sudo dnf install firefox-trunk`
