@@ -12,7 +12,7 @@ AutoReqProv: no
 Summary: "This package is built directly from Mozilla's nightly tarball."
 Name: firefox-trunk
 Version: %{currenf}
-Release: 0a1_%(date +%%y%%m%%d)%{?dist}
+Release: 0a1-%(date +%%y%%m%%d)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
 URL: https://www.nightly.mozilla.org/
@@ -124,11 +124,11 @@ pref("app.update.enabled", false);' > %{buildroot}/opt/firefox-trunk/browser/def
 ##Changes
 
 %changelog
-* Wed Nov 10 2021 Jack Greiner <jack@emoss.org> 96-0a1_211110
+* Wed Nov 10 2021 Jack Greiner <jack@emoss.org> 96-0a1-211110
 - Updated dependencies
 - Added checksum verification for downloads
 - Simplified specfile.
-* Wed Oct 31 2018 Jack Greiner <jack@emoss.org> 64-0a1_181031
+* Wed Oct 31 2018 Jack Greiner <jack@emoss.org> 64-0a1-181031
 - Fixed icon paths
 - Cleaned up some unnecessary commands in build
 - Re-added a safemode desktop extension
