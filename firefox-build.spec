@@ -12,7 +12,7 @@ AutoReqProv: no
 Summary: "This package is built directly from Mozilla's nightly tarball."
 Name: firefox-trunk
 Version: %{currenf}
-Release: 0a1_%(date +%%y%%m%%d)%{?dist}
+Release: 0a1_%(date +%%Y%%m%%d)_%(date +%%H%%M)%{?dist}
 License: MPLv1.1 or GPLv2+ or LGPLv2+
 Group: Applications/Internet
 URL: https://www.nightly.mozilla.org/
