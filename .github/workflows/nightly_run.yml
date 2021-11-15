@@ -12,7 +12,28 @@ jobs:
     steps:
       - name: Checkout Naev Repository
         uses: actions/checkout@v2
+        
+      - name: Append build number
+        run: |
+          echo $(date +%y%m%d)_$(date +%H%M) | tee -a buildnumber.txt
+        working-directory: .github
+          
+      - name: Add new file changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions"
+          git add *
 
+      - name: Commit API Documentation Changes
+        run: |
+          git commit -m "Bump build number." -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          
       - name: "Update 'nightly' release"
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
