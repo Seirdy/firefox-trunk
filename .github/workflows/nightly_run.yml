@@ -1,6 +1,7 @@
 name: "Nightly Run"
 
 on:
+  push:
   schedule:
       - cron: "0 0 * * *"
 
