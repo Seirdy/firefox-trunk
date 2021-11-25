@@ -15,7 +15,7 @@ jobs:
         
       - name: Append build number
         run: |
-          echo $(date +%y%m%d)_$(date +%H%M) | tee -a buildnumber.txt
+          echo $(date +%y%m%d)_$(date +%H%M) | tee lastBuilNnumber.txt
         working-directory: .github
           
       - name: Add new file changes
