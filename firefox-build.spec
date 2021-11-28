@@ -25,7 +25,7 @@ Source1: https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/
 ##DEPS
 BuildRequires: wget tar
 
-Requires: alsa-lib libX11 libXcomposite libXcursor libXdamage libXext libXfixes libXi libXrandr libXrender atk cairo-gobject cairo dbus dbus-glib fdk-aac libffi fontconfig freetype libgcc gtk3 gdk-pixbuf2 harfbuzz pango libxcb zlib p11-kit-trust pciutils-libs
+Requires: alsa-lib libX11 libXcomposite libXcursor libXdamage libXext libXfixes libXi libXrandr libXrender atk cairo-gobject cairo dbus dbus-glib fdk-aac-free libffi fontconfig freetype libgcc gtk3 gdk-pixbuf2 harfbuzz pango libxcb zlib p11-kit-trust pciutils-libs
 Requires: nspr >= 4.26
 Requires: nss >= 3.70
 
